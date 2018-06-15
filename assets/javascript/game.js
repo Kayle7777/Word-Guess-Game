@@ -1,9 +1,17 @@
-//The window.onload bit must be used because Javascript can't use the document.body, because when the script loads, body hasn't been created yet.
+let key;
+
 window.onload = function() {
-//This if statement is probably too redundant, but it will check if document.body isn't null (I.E. is it true?)
   if (document.body) {
-  document.body.addEventListener('keyup', function(event) {
-    console.log(event.key);
+    document.body.addEventListener('keyup', function(event) {
+      key = event.key
     });
   }
+}
+
+Game = {
+  keywatch : Game.watch(this.key, function(id, oldval, newval) {
+    console.log('key.' + id + ' changed from' + oldval + " to " + newval);
+    return newval;
+  })
+  this.key = key
 }
