@@ -8,14 +8,14 @@ GameObject = {
     var underscoreHolder = document.getElementById("underscoreHolder");
     // Erase whatever is there already when this runs
     underscoreHolder.innerHTML = "";
+
     for(i=0;i<this.words[this.selector].length;i++) {
       var x = document.createElement('span');
       var y = document.createTextNode("_ ");
-      x.setAttribute("id","Span"+i);
+      x.setAttribute("id",this.words[this.selector][i].toLowerCase());
       x.appendChild(y);
       underscoreHolder.appendChild(x);
     }
-      // underscoreHolder.appendChild(document.createTextNode(textNode));
   }
 }
 //Use that selector # in the future to get the word from the wordlist, and tie it to those created divs.
