@@ -2,7 +2,10 @@
 
 GameObject = {
   words : ["Word","TestWord","MoreWords"],
-  eventListener: document.body.addEventListener('keyup', () => $("#test").html(event.key), false),
+  eventListener: document.body.addEventListener('keyup', function() {
+    $("#test").html(event.key);
+    GameObject.triesLeft--;
+  }, false),
   totalGames : 0,
   triesLeft : 0,
   gamesWon : 0,
