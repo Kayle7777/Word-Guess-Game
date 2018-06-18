@@ -1,47 +1,43 @@
 
 
 GameObject = {
-  words : ["Word","TestWord","MoreWords", "Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
-  badCharacters: ['Control', 'Meta', ' ', ';'],
+  words : ["Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
+  badCharacters: ['Control', 'Meta', ' ', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")"],
   totalGames : 0,
   triesLeft : 0,
   gamesWon : 0,
   gamesLost : 0,
-  triedWords: [],
-  // It's a shame but the "this" scope won't work, because all that code is basically existing upon the document.body
+  triedLetters: [],
   eventListener: document.body.addEventListener('keyup', function() {
     $("#lastLetter").html(event.key.toUpperCase());
-    if (GameObject.badCharacters.includes(event.key)){}
+    if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
       else{
       $("#triesLeft").html(() => GameObject.triesLeft--);
-      $("#triedWords").html(() => {GameObject.triedWords.push(event.key.toUpperCase() + " ");return GameObject.triedWords});
+      $("#triedLetters").html(() => {GameObject.triedLetters.push(event.key.toUpperCase() + " ");return GameObject.triedLetters});
+      function test(){
+      };
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
         GameObject.totalGames++;
         $("#totalGames").html(GameObject.totalGames);
-      }
+      };
     };
   }, false),
-  counter: function() {
-  },
 
   initializeGame: function() {
-    this.triedWords = [];
-    $("#triedWords").html(this.triedWords);
     this.selector = Math.floor(Math.random()*GameObject.words.length);
     this.selectedWord = this.words[this.selector];
-    this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5) + 1);
-    this.triedWords = [];
-    $("#triesLeft").html(this.triesLeft);
-    var underscoreHolder = document.getElementById("underscoreHolder");
-    // Erase whatever is there already when this runs
-    underscoreHolder.innerHTML = "";
+    $("#triedLetters").html(() => {this.triedLetters = []; return this.triedLetters;});
+    $("#triesLeft").html(() => {this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5) + 1); return this.triesLeft});
+    var hiddenWord = document.getElementById("hiddenWord");
+    hiddenWord.innerHTML = "";
     for(i=0;i<this.words[this.selector].length;i++) {
       var x = document.createElement('span');
       var y = document.createTextNode("_ ");
-      x.setAttribute("id",this.words[this.selector][i].toLowerCase());
+      x.setAttribute("id",this.words[this.selector][i].toUpperCase());
+      // x.setAttribute("class", "hiddenWordClass");
       x.appendChild(y);
-      underscoreHolder.appendChild(x);
+      hiddenWord.appendChild(x);
     }
   }
 }
