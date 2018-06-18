@@ -4,7 +4,9 @@ GameObject = {
   words : ["Word","TestWord","MoreWords"],
   eventListener: document.body.addEventListener('keyup', function() {
     $("#test").html(event.key);
-    GameObject.triesLeft--;
+    if (event.key != "Control" && event.key != "r"){
+      GameObject.triesLeft--;
+      $("#triesLeft").html(GameObject.triesLeft)}
   }, false),
   totalGames : 0,
   triesLeft : 0,
@@ -18,6 +20,7 @@ GameObject = {
     this.selector = Math.floor(Math.random()*GameObject.words.length);
     this.selectedWord = this.words[this.selector];
     this.triesLeft = this.selectedWord.length + 5;
+    $("#triesLeft").html(this.triesLeft);
     var underscoreHolder = document.getElementById("underscoreHolder");
     // Erase whatever is there already when this runs
     underscoreHolder.innerHTML = "";
