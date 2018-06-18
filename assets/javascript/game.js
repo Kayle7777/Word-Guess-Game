@@ -7,6 +7,7 @@ GameObject = {
   gamesWon : 0,
   gamesLost : 0,
   triedWords: [],
+  // It's a shame but the "this" scope won't work, because all that code is basically existing upon the document.body
   eventListener: document.body.addEventListener('keyup', function() {
     $("#lastLetter").html(event.key);
     if (event.key != "Control" && event.key != "Tab" && event.key != " "){
@@ -45,4 +46,3 @@ GameObject = {
 //Use that selector # in the future to get the word from the wordlist, and tie it to those created divs.
 
 GameObject.initializeGame()
-// need to have this delete the old one too CHECK got it
