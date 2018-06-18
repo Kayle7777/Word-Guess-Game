@@ -9,13 +9,15 @@ GameObject = {
   triedWords: [],
   eventListener: document.body.addEventListener('keyup', function() {
     $("#test").html(event.key);
-    if (event.key != "Control"){
+    if (event.key != "Control" && event.key != "Tab" && event.key != " "){
       GameObject.triesLeft--;
       $("#triesLeft").html(GameObject.triesLeft);
       GameObject.triedWords.push(event.key.toUpperCase() + " ");
       $("#triedWords").html(GameObject.triedWords);
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
+        GameObject.totalGames++;
+        $("#totalGames").html(GameObject.totalGames);
       }
     };
   }, false),
