@@ -12,13 +12,13 @@ GameObject = {
     $("#lastLetter").html(event.key.toUpperCase());
     if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
       else{
-      $("#triesLeft").html(() => GameObject.triesLeft--);
+      $("#triesLeft").html(() => {GameObject.triesLeft--;return GameObject.triesLeft});
       $("#triedLetters").html(() => {GameObject.triedLetters.push(event.key.toUpperCase() + " ");return GameObject.triedLetters});
       var kids = $("#hiddenWord").children();
       for(var i=0;i<GameObject.selectedWord.length;i++){
         if(event.key == kids[i].id){
           kids[i].innerHTML=event.key.toUpperCase()
-          $("#triesLeft").html(() => GameObject.triesLeft++);
+          $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
         }
       }
 
@@ -33,7 +33,7 @@ GameObject = {
     this.selector = Math.floor(Math.random()*GameObject.words.length);
     this.selectedWord = this.words[this.selector];
     $("#triedLetters").html(() => {this.triedLetters = []; return this.triedLetters;});
-    $("#triesLeft").html(() => {this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5) + 1); return this.triesLeft});
+    $("#triesLeft").html(() => {this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5)); return this.triesLeft});
     var hiddenWord = document.getElementById("hiddenWord");
     hiddenWord.innerHTML = "";
     for(i=0;i<this.words[this.selector].length;i++) {
