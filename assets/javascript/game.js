@@ -23,8 +23,7 @@ GameObject = {
 
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
-        GameObject.totalGames++;
-        $("#totalGames").html(GameObject.totalGames);
+        $("#totalGames").html(() => {GameObject.totalGames++;return GameObject.totalGames});
       };
     };
   }, false),
