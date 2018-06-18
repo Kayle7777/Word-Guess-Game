@@ -11,23 +11,28 @@ GameObject = {
     $("#test").html(event.key);
     if (event.key != "Control"){
       GameObject.triesLeft--;
-      $("#triesLeft").html(GameObject.triesLeft)
+      $("#triesLeft").html(GameObject.triesLeft);
       GameObject.triedWords.push(event.key.toUpperCase() + " ");
-      $("#triedWords").html(GameObject.triedWords)}
+      $("#triedWords").html(GameObject.triedWords);
+      if(GameObject.triesLeft == 0) {
+        GameObject.initializeGame();
+      }
+    };
   }, false),
   counter: function() {
-
   },
 
   initializeGame: function() {
+    this.triedWords = [];
+    $("#triedWords").html(this.triedWords);
     this.selector = Math.floor(Math.random()*GameObject.words.length);
     this.selectedWord = this.words[this.selector];
     this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5));
+    this.triedWords = [];
     $("#triesLeft").html(this.triesLeft);
     var underscoreHolder = document.getElementById("underscoreHolder");
     // Erase whatever is there already when this runs
     underscoreHolder.innerHTML = "";
-
     for(i=0;i<this.words[this.selector].length;i++) {
       var x = document.createElement('span');
       var y = document.createTextNode("_ ");
