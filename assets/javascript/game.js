@@ -17,7 +17,7 @@ GameObject = {
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
         GameObject.totalGames++;
-        $("#totalGames").html(GameObject.totalGames);
+        $("#totalGames").html(GameObject.totalGames);git
       }
     };
   }, false),
@@ -29,7 +29,7 @@ GameObject = {
     $("#triedWords").html(this.triedWords);
     this.selector = Math.floor(Math.random()*GameObject.words.length);
     this.selectedWord = this.words[this.selector];
-    this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5));
+    this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5) + 1);
     this.triedWords = [];
     $("#triesLeft").html(this.triesLeft);
     var underscoreHolder = document.getElementById("underscoreHolder");
