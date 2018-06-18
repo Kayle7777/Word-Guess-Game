@@ -8,7 +8,7 @@ GameObject = {
   gamesLost : 0,
   triedWords: [],
   eventListener: document.body.addEventListener('keyup', function() {
-    $("#test").html(event.key);
+    $("#lastLetter").html(event.key);
     if (event.key != "Control" && event.key != "Tab" && event.key != " "){
       $("#triesLeft").html(() => GameObject.triesLeft--);
       $("#triedWords").html(() => {GameObject.triedWords.push(event.key.toUpperCase() + " ");return GameObject.triedWords});
