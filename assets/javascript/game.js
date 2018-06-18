@@ -17,7 +17,8 @@ GameObject = {
       var kids = $("#hiddenWord").children();
       for(var i=0;i<GameObject.selectedWord.length;i++){
         if(event.key == kids[i].id){
-          console.log("This is a test");
+          kids[i].innerHTML=event.key.toUpperCase()
+          $("#triesLeft").html(() => GameObject.triesLeft++);
         }
       }
 
