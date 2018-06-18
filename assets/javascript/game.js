@@ -15,13 +15,17 @@ GameObject = {
       $("#triesLeft").html(() => {GameObject.triesLeft--;return GameObject.triesLeft});
       $("#triedLetters").html(() => {GameObject.triedLetters.push(event.key.toUpperCase() + " ");return GameObject.triedLetters});
       var kids = $("#hiddenWord").children();
+      //ifIncrease is a very NOT elegant solution to triesLeft++ accidentally interating too many times on words with multiple of one letter.
+      var ifIncrease=0;
       for(var i=0;i<GameObject.selectedWord.length;i++){
         if(event.key == kids[i].id){
-          kids[i].innerHTML=event.key.toUpperCase()
-          $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
+          kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
         }
       }
-
+      if(ifIncrease>0){
+        $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
+        ifIncrease=0;
+      }
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
         $("#totalGames").html(() => {GameObject.totalGames++;return GameObject.totalGames});
