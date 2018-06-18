@@ -1,7 +1,8 @@
 
 
 GameObject = {
-  words : ["Word","TestWord","MoreWords"],
+  words : ["Word","TestWord","MoreWords", "Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
+  badCharacters: ['Control', 'Meta', ' ', ';'],
   totalGames : 0,
   triesLeft : 0,
   gamesWon : 0,
@@ -9,8 +10,9 @@ GameObject = {
   triedWords: [],
   // It's a shame but the "this" scope won't work, because all that code is basically existing upon the document.body
   eventListener: document.body.addEventListener('keyup', function() {
-    $("#lastLetter").html(event.key);
-    if (event.key != "Control" && event.key != "Tab" && event.key != " "){
+    $("#lastLetter").html(event.key.toUpperCase());
+    if (GameObject.badCharacters.includes(event.key)){}
+      else{
       $("#triesLeft").html(() => GameObject.triesLeft--);
       $("#triedWords").html(() => {GameObject.triedWords.push(event.key.toUpperCase() + " ");return GameObject.triedWords});
       if(GameObject.triesLeft == 0) {
