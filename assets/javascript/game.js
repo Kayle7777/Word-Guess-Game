@@ -14,8 +14,13 @@ GameObject = {
       else{
       $("#triesLeft").html(() => GameObject.triesLeft--);
       $("#triedLetters").html(() => {GameObject.triedLetters.push(event.key.toUpperCase() + " ");return GameObject.triedLetters});
-      function test(){
-      };
+      var kids = $("#hiddenWord").children();
+      for(var i=0;i<GameObject.selectedWord.length;i++){
+        if(event.key == kids[i].id){
+          console.log("This is a test");
+        }
+      }
+
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
         GameObject.totalGames++;
@@ -34,7 +39,7 @@ GameObject = {
     for(i=0;i<this.words[this.selector].length;i++) {
       var x = document.createElement('span');
       var y = document.createTextNode("_ ");
-      x.setAttribute("id",this.words[this.selector][i].toUpperCase());
+      x.setAttribute("id",this.words[this.selector][i].toLowerCase());
       // x.setAttribute("class", "hiddenWordClass");
       x.appendChild(y);
       hiddenWord.appendChild(x);
