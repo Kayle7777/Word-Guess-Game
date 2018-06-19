@@ -1,4 +1,5 @@
 //There has GOT to be a better way to consistently update the HTML than that cumbersome ++ / return GameObject nonsense.
+//Maybe make it linger for a few seconds on the completed word before deleting it?
 
 GameObject = {
   words : ["Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
