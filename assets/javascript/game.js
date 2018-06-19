@@ -3,7 +3,7 @@
 
 GameObject = {
   words : ["Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
-  badCharacters: ['Control', 'Meta', ' ', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")"],
+  badCharacters: ['Control', 'Meta', ' ', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace"],
   totalGames : 0,
   triesLeft : 0,
   gamesWon : 0,
@@ -16,14 +16,14 @@ GameObject = {
       $("#triesLeft").html(() => {GameObject.triesLeft--;return GameObject.triesLeft});
       $("#triedLetters").html(() => {GameObject.triedLetters.push(event.key.toUpperCase() + " ");return GameObject.triedLetters});
       var kids = $("#hiddenWord").children();
-      //ifIncrease is a very NOT elegant solution to triesLeft++ accidentally iterating too many times on words with multiple of one letter.
+      //ifIncrease is a very NOT elegant solution to triesLeft++ accidentally iterating too many times on words with multiple of one letter. But it works
       var ifIncrease=0;
       for(var i=0;i<GameObject.selectedWord.length;i++){
         if(event.key == kids[i].id){
           kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
         }
       }
-      if (kids.map((x) => kids[x].innerHTML).toArray().includes("_ ")) {}
+      if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
       else{
         GameObject.initializeGame();
         $("#gamesWon").html(() => {GameObject.gamesWon++;return GameObject.gamesWon})
@@ -49,7 +49,7 @@ GameObject = {
     hiddenWord.innerHTML = "";
     for(i=0;i<this.words[this.selector].length;i++) {
       var x = document.createElement('span');
-      var y = document.createTextNode("_ ");
+      var y = document.createTextNode("_");
       x.setAttribute("id",this.words[this.selector][i].toLowerCase());
       // x.setAttribute("class", "hiddenWordClass");
       x.appendChild(y);
