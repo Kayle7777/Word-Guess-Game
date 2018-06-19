@@ -1,4 +1,6 @@
-
+// To do still -- Make it so when word is filled out completely, do initializeGame. This could be done maybe with something that checks
+// for the amount of underscores present in $('#hiddenWord').children()
+}
 
 GameObject = {
   words : ["Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
