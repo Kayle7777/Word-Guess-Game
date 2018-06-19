@@ -1,5 +1,4 @@
-// To do still -- Make it so when word is filled out completely, do initializeGame. This could be done maybe with something that checks
-// for the amount of underscores present in $('#hiddenWord').children() array, or something.
+//There has GOT to be a better way to consistently update the HTML than that cumbersome ++ / return GameObject nonsense.
 
 GameObject = {
   words : ["Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
@@ -16,7 +15,7 @@ GameObject = {
       $("#triesLeft").html(() => {GameObject.triesLeft--;return GameObject.triesLeft});
       $("#triedLetters").html(() => {GameObject.triedLetters.push(event.key.toUpperCase() + " ");return GameObject.triedLetters});
       var kids = $("#hiddenWord").children();
-      //ifIncrease is a very NOT elegant solution to triesLeft++ accidentally interating too many times on words with multiple of one letter.
+      //ifIncrease is a very NOT elegant solution to triesLeft++ accidentally iterating too many times on words with multiple of one letter.
       var ifIncrease=0;
       for(var i=0;i<GameObject.selectedWord.length;i++){
         if(event.key == kids[i].id){
