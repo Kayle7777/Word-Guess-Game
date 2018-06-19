@@ -1,6 +1,5 @@
 // To do still -- Make it so when word is filled out completely, do initializeGame. This could be done maybe with something that checks
-// for the amount of underscores present in $('#hiddenWord').children()
-}
+// for the amount of underscores present in $('#hiddenWord').children() array, or something.
 
 GameObject = {
   words : ["Chicken", "Spaghetti", "Wheels", "Brain", "Zombies", "Vampires", "Dungeons", "Dragons", "Wizards", "Knights"],
@@ -24,22 +23,28 @@ GameObject = {
           kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
         }
       }
+      if (kids.map((x) => kids[x].innerHTML).toArray().includes("_ ")) {}
+      else{
+        GameObject.initializeGame();
+        $("#gamesWon").html(() => {GameObject.gamesWon++;return GameObject.gamesWon})
+      };
       if(ifIncrease>0){
         $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
         ifIncrease=0;
       }
       if(GameObject.triesLeft == 0) {
         GameObject.initializeGame();
-        $("#totalGames").html(() => {GameObject.totalGames++;return GameObject.totalGames});
+        $("#gamesLost").html(() => {GameObject.gamesLost++;return GameObject.gamesLost})
       };
     };
   }, false),
 
   initializeGame: function() {
+    $("#totalGames").html(() => {GameObject.totalGames++;return GameObject.totalGames});
     this.selector = Math.floor(Math.random()*GameObject.words.length);
     this.selectedWord = this.words[this.selector];
     $("#triedLetters").html(() => {this.triedLetters = []; return this.triedLetters;});
-    $("#triesLeft").html(() => {this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 5)); return this.triesLeft});
+    $("#triesLeft").html(() => {this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 3)); return this.triesLeft});
     var hiddenWord = document.getElementById("hiddenWord");
     hiddenWord.innerHTML = "";
     for(i=0;i<this.words[this.selector].length;i++) {
