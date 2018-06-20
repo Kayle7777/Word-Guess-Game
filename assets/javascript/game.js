@@ -39,7 +39,7 @@ document.body.addEventListener('keyup', function() {
 
     GameObject.updateHTML();
   };
-}, false)
+}, false);
 
 
 GameObject = {
