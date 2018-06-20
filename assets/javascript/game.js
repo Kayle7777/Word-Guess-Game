@@ -11,8 +11,8 @@ document.body.addEventListener('keyup', function() {
   else{
     GameObject.triesLeft--;
 
-    if (GameObject.triedLetters.includes(event.key.toUpperCase() + " ")) { /*I could actually make it so subsequent errors don't matter right here, by adding triesleft++*/
-    }else {GameObject.triedLetters.push(event.key.toUpperCase() + " ")
+    if (GameObject.triedLetters.includes(event.key.toUpperCase())) { /*I could actually make it so subsequent errors don't matter right here, by adding triesleft++*/
+    }else {GameObject.triedLetters.push(event.key.toUpperCase())
     };
 
     var kids = $("#hiddenWord").children();
@@ -23,11 +23,11 @@ document.body.addEventListener('keyup', function() {
       if(event.key == kids[i].id){
         kids[i].innerHTML=event.key.toUpperCase();ifInc++
       }
-    }
+    };
     if(ifInc>0){
       GameObject.triesLeft++;
       ifInc=0;
-    }
+    };
 
     // Game end conditions
     if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
@@ -40,45 +40,47 @@ document.body.addEventListener('keyup', function() {
       GameObject.initializeGame();
       GameObject.gamesLost++
     };
+
+    GameObject.updateHTML();
   };
 }, false)
 
-document.body.addEventListener('keyup', function() {
-  $("#lastLetter").text(event.key.toUpperCase());
-  if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
-  else{
-    $("#triesLeft").text(() => {GameObject.triesLeft--;return GameObject.triesLeft});
-    $("#triedLetters").html(() => {
-      var x = event.key.toUpperCase() + " ";
-      if (GameObject.triedLetters.includes(x)) {
-      }else {GameObject.triedLetters.push(x);return GameObject.triedLetters}
-    });
-
-    var kids = $("#hiddenWord").children();
-    var ifIncrease=0;
-
-    for(var i=0;i<GameObject.selectedWord.length;i++){
-      if(event.key == kids[i].id){
-        kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
-      }
-    }
-    if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
-    else{
-      GameObject.initializeGame();
-      $("#gamesWon").html(() => {GameObject.gamesWon++;return GameObject.gamesWon})
-    };
-
-    if(ifIncrease>0){
-      $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
-      ifIncrease=0;
-    }
-
-    if(GameObject.triesLeft == 0) {
-      GameObject.initializeGame();
-      $("#gamesLost").html(() => {GameObject.gamesLost++;return GameObject.gamesLost})
-    };
-  };
-}, false)
+// document.body.addEventListener('keyup', function() {
+//   $("#lastLetter").text(event.key.toUpperCase());
+//   if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
+//   else{
+//     $("#triesLeft").text(() => {GameObject.triesLeft--;return GameObject.triesLeft});
+//     $("#triedLetters").html(() => {
+//       var x = event.key.toUpperCase() + " ";
+//       if (GameObject.triedLetters.includes(x)) {
+//       }else {GameObject.triedLetters.push(x);return GameObject.triedLetters}
+//     });
+//
+//     var kids = $("#hiddenWord").children();
+//     var ifIncrease=0;
+//
+//     for(var i=0;i<GameObject.selectedWord.length;i++){
+//       if(event.key == kids[i].id){
+//         kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
+//       }
+//     }
+//     if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
+//     else{
+//       GameObject.initializeGame();
+//       $("#gamesWon").html(() => {GameObject.gamesWon++;return GameObject.gamesWon})
+//     };
+//
+//     if(ifIncrease>0){
+//       $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
+//       ifIncrease=0;
+//     }
+//
+//     if(GameObject.triesLeft == 0) {
+//       GameObject.initializeGame();
+//       $("#gamesLost").html(() => {GameObject.gamesLost++;return GameObject.gamesLost})
+//     };
+//   };
+// }, false)
 
 GameObject = {
   words : {
@@ -103,10 +105,15 @@ GameObject = {
 
   updateHTML: function() {
     // NOTE: triesLeft updateHTML
+    document.getElementById("triesLeft").innerHTML = this.triesLeft;
     // NOTE: triedLetters updateHTML
+    document.getElementById("triedLetters").innerHTML = this.triedLetters.join(" ");
     // NOTE: totalGames updateHTML
+    document.getElementById("totalGames").innerHTML = this.totalGames;
     // NOTE: gamesWon updateHTML
+    document.getElementById("gamesWon").innerHTML = this.totalGames;
     // NOTE: gamesLost updateHTML
+    document.getElementById("gamesLost").innerHTML = this.gamesLost;
   },
 
   initializeGame: function() {
