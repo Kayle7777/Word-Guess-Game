@@ -1,45 +1,47 @@
 
-// NOTE: WORKING CHANGES
-// NOTE: Remove jQuery by adding it's relevant equivalents. Basically the .html() and the .children()
-// NOTE: Move all the things that update the HTML DOM (basically most of the stuff that's jQuery) to an updateCounter() function,
+//  WORKING CHANGES
+//  Remove jQuery by adding it's relevant equivalents. Basically the .html() and the .children()
+//  Move all the things that update the HTML DOM (basically most of the stuff that's jQuery) to an updateCounter() function,
 // that runs each time the event listener finishes
 
-// document.body.addEventListener('keyup', function() {
-//   $("#lastLetter").text(event.key.toUpperCase());
-//   if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
-//   else{
-//     GameObject.triesLeft--;
-//     if (GameObject.triedLetters.includes(event.key.toUpperCase() + " ")) {
-//       }else {GameObject.triedLetters.push(event.key.toUpperCase() + " ")
-//     };
-//
-//     var kids = $("#hiddenWord").children();
-//
-//     //Check if you typed correct letter
-//     var ifInc=0;
-//     for(var i=0;i<GameObject.selectedWord.length;i++){
-//       if(event.key == kids[i].id){
-//         kids[i].innerHTML=event.key.toUpperCase();ifInc++
-//       }
-//     }
-//     if(ifInc>0){
-//       $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
-//       ifInc=0;
-//     }
-//     // Game end conditions
-//     if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
-//     else{
-//       GameObject.initializeGame();
-//       $("#gamesWon").html(() => {GameObject.gamesWon++;return GameObject.gamesWon})
-//     };
-//
-//
-//     if(GameObject.triesLeft == 0) {
-//       GameObject.initializeGame();
-//       $("#gamesLost").html(() => {GameObject.gamesLost++;return GameObject.gamesLost})
-//     };
-//   };
-// }, false)
+document.body.addEventListener('keyup', function() {
+  $("#lastLetter").text(event.key.toUpperCase());
+
+  if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
+  else{
+    GameObject.triesLeft--;
+
+    if (GameObject.triedLetters.includes(event.key.toUpperCase() + " ")) { /*I could actually make it so subsequent errors don't matter right here, by adding triesleft++*/
+    }else {GameObject.triedLetters.push(event.key.toUpperCase() + " ")
+    };
+
+    var kids = $("#hiddenWord").children();
+
+    //Check if you typed correct letter, only give one try back no matter how many letters uncovered
+    var ifInc=0;
+    for(var i=0;i<GameObject.selectedWord.length;i++){
+      if(event.key == kids[i].id){
+        kids[i].innerHTML=event.key.toUpperCase();ifInc++
+      }
+    }
+    if(ifInc>0){
+      GameObject.triesLeft++;
+      ifInc=0;
+    }
+
+    // Game end conditions
+    if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
+    else{
+      GameObject.gamesWon++;
+      GameObject.initializeGame();
+    };
+
+    if (GameObject.triesLeft == 0) {
+      GameObject.initializeGame();
+      GameObject.gamesLost++
+    };
+  };
+}, false)
 
 document.body.addEventListener('keyup', function() {
   $("#lastLetter").text(event.key.toUpperCase());
@@ -99,9 +101,13 @@ GameObject = {
   gamesLost : 0,
   triedLetters: [],
 
-  updateHTML() : function() {
-
-  }
+  updateHTML: function() {
+    // NOTE: triesLeft updateHTML
+    // NOTE: triedLetters updateHTML
+    // NOTE: totalGames updateHTML
+    // NOTE: gamesWon updateHTML
+    // NOTE: gamesLost updateHTML
+  },
 
   initializeGame: function() {
     $("#totalGames").html(() => {GameObject.totalGames++;return GameObject.totalGames});
