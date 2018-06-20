@@ -1,5 +1,9 @@
 
 // NOTE: WORKING CHANGES
+// NOTE: Remove jQuery by adding it's relevant equivalents. Basically the .html() and the .children()
+// NOTE: Move all the things that update the HTML DOM (basically most of the stuff that's jQuery) to an updateCounter() function,
+// that runs each time the event listener finishes
+
 // document.body.addEventListener('keyup', function() {
 //   $("#lastLetter").text(event.key.toUpperCase());
 //   if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
