@@ -5,12 +5,10 @@ document.body.addEventListener('keyup', function() {
   $("#lastLetter").text(event.key.toUpperCase());
   if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
   else{
-    $("#triesLeft").text(() => {GameObject.triesLeft--;return GameObject.triesLeft});
-    $("#triedLetters").html(() => {
-      var x = event.key.toUpperCase() + " ";
-      if (GameObject.triedLetters.includes(x)) {
-      }else {GameObject.triedLetters.push(x);return GameObject.triedLetters}
-    });
+    GameObject.triesLeft--;
+    if (GameObject.triedLetters.includes(event.key.toUpperCase() + " ")) {
+      }else {GameObject.triedLetters.push(event.key.toUpperCase() + " ")
+    };
 
     var kids = $("#hiddenWord").children();
     var ifIncrease=0;
@@ -20,6 +18,7 @@ document.body.addEventListener('keyup', function() {
         kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
       }
     }
+    // Game end condition
     if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
     else{
       GameObject.initializeGame();
@@ -58,6 +57,20 @@ GameObject = {
   gamesWon : 0,
   gamesLost : 0,
   triedLetters: [],
+
+  updateHTML() : function() {
+    $("#triesLeft").text(() => {GameObject.triesLeft--;return GameObject.triesLeft});
+    // $("#triedLetters").html(() => {
+    //   var x = event.key.toUpperCase() + " ";
+    //   if (GameObject.triedLetters.includes(x)) {
+    //   }else {GameObject.triedLetters.push(x);return GameObject.triedLetters}
+    if (GameObject.triedLetters.includes(event.key.toUpperCase() + " ")) {
+      }else {GameObject.triedLetters.push(event.key.toUpperCase() + " ")
+      };
+
+    });
+
+  },
 
   initializeGame: function() {
     $("#totalGames").html(() => {GameObject.totalGames++;return GameObject.totalGames});
