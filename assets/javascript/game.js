@@ -11,24 +11,24 @@ document.body.addEventListener('keyup', function() {
     };
 
     var kids = $("#hiddenWord").children();
-    var ifIncrease=0;
 
+    var ifIncrease=0;
     for(var i=0;i<GameObject.selectedWord.length;i++){
       if(event.key == kids[i].id){
         kids[i].innerHTML=event.key.toUpperCase();ifIncrease++
       }
     }
-    // Game end condition
+    if(ifIncrease>0){
+      $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
+      ifIncrease=0;
+    }
+    // Game end conditions
     if (kids.map((x) => kids[x].innerHTML).toArray().includes("_")) {}
     else{
       GameObject.initializeGame();
       $("#gamesWon").html(() => {GameObject.gamesWon++;return GameObject.gamesWon})
     };
 
-    if(ifIncrease>0){
-      $("#triesLeft").html(() => {GameObject.triesLeft++;return GameObject.triesLeft});
-      ifIncrease=0;
-    }
 
     if(GameObject.triesLeft == 0) {
       GameObject.initializeGame();
