@@ -1,9 +1,3 @@
-
-//  WORKING CHANGES
-//  Remove jQuery by adding it's relevant equivalents. Basically the .html() and the .children()
-//  Move all the things that update the HTML DOM (basically most of the stuff that's jQuery) to an updateCounter() function,
-// that runs each time the event listener finishes
-
 document.body.addEventListener('keyup', function() {
   document.getElementById("lastLetter").innerHTML = event.key.toUpperCase();
 
@@ -12,7 +6,7 @@ document.body.addEventListener('keyup', function() {
     GameObject.triesLeft--;
 
     if (GameObject.triedLetters.includes(event.key.toUpperCase())) {
-      if (GameObject.triedLetters.includes(event.key.toUpperCase()) && GameObject.selectedWord.includes(event.key.toLowerCase())) {
+      if (GameObject.selectedWord.includes(event.key.toLowerCase())) {
       }else{GameObject.triesLeft++;};
     }else {GameObject.triedLetters.push(event.key.toUpperCase())
     };
@@ -84,7 +78,7 @@ GameObject = {
 
   initializeGame: function() {
     this.totalGames++;
-    this.selectedWord = Object.keys(this.words)[Math.floor(Math.random() * Object.keys(this.words).length)]
+    this.selectedWord = Object.keys(this.words)[Math.floor(Math.random() * Object.keys(this.words).length)].toLowerCase()
     this.triedLetters = [];
     this.triesLeft = this.selectedWord.length + (Math.floor(Math.random() * 3))
 
@@ -94,7 +88,7 @@ GameObject = {
       var newSpan = document.createElement('span');
       var textNode = document.createTextNode("_");
       newSpan.setAttribute("id",this.selectedWord[i].toLowerCase());
-      // newSpan.setAttribute("class", "hiddenWordClass");
+      newSpan.setAttribute("class", "hiddenWordClass");
       newSpan.appendChild(textNode);
       hiddenWord.appendChild(newSpan);
     }
