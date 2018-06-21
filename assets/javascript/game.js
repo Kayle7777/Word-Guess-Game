@@ -57,8 +57,10 @@ GameObject = {
     "Sarumon":"Test8",
     "Anduril":"Test9",
     "Ringwraith":"Test10",
-    "Frodo":"Test10"
-
+    "Frodo":"Test10",
+    "Fighter":0,
+    "Rogue":0,
+    "Warlock":0
   },
   badCharacters: ['Control', 'Meta', ' ', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace", "=", "-", "'", "\""],
   totalGames : 0,
