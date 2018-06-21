@@ -62,7 +62,7 @@ GameObject = {
     "Rogue":0,
     "Warlock":0
   },
-  badCharacters: ['Control', 'Meta', ' ',', ', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace", "=", "-", "'", "\""],
+  badCharacters: ['Control', 'Meta', ' ',',', '.', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace", "=", "-", "'", "\""],
   totalGames : 0,
   triesLeft : 0,
   gamesWon : 0,
