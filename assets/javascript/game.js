@@ -66,7 +66,7 @@ GameObject = {
     "Sauron":0,
     "Legolas":0
   },
-  badCharacters: ['Control', 'Meta', ' ',',', '.', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace", "=", "-", "'", "\", "Tab"],
+  badCharacters: ['Control', 'Meta', ' ',',', '.', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace", "=", "-", "'", "Tab"],
   totalGames : 0,
   triesLeft : 0,
   gamesWon : 0,
