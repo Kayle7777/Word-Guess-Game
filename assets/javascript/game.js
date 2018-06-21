@@ -1,4 +1,4 @@
-document.body.addEventListener('keyup', function() {
+document.body.addEventListener('keyup', function(event) {
   document.getElementById("lastLetter").innerHTML = event.key.toUpperCase();
 
   if (GameObject.badCharacters.includes(event.key)){/*If it DOES include something from badCharacters, do nothing*/}
