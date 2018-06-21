@@ -35,7 +35,7 @@ document.body.addEventListener('keyup', function() {
 
     if (GameObject.triesLeft == 0) {
       GameObject.gamesLost++
-      document.getElementById("lastWord").innerHTML = GameObject.selectedWord.toUpperCase();
+      document.getElementById("lastWord").innerHTML = "*** " + GameObject.selectedWord.toUpperCase() + " ***";
       GameObject.initializeGame();
     };
 
