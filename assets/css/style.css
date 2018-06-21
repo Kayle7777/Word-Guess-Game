@@ -1,4 +1,19 @@
-span {
-  font-family: 'Inconsolata', monospace;
-  padding:5px;
+html, body {
+  height:100%;
+}
+body {
+  display:flex;
+  align-items:center;
+}
+
+.container {
+  padding: 0 0 0 0;
+}
+
+.hiddenWordClass {
+  padding:3px;
+}
+
+#hiddenWord {
+  margin-top: 20px;
 }

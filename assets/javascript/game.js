@@ -29,11 +29,13 @@ document.body.addEventListener('keyup', function() {
     if (kids.map((x) => x.innerHTML).includes("_")) {}
     else{
       GameObject.gamesWon++;
+      document.getElementById("lastWord").innerHTML = "*** " + GameObject.selectedWord.toUpperCase() + " ***";
       GameObject.initializeGame();
     };
 
     if (GameObject.triesLeft == 0) {
       GameObject.gamesLost++
+      document.getElementById("lastWord").innerHTML = GameObject.selectedWord.toUpperCase();
       GameObject.initializeGame();
     };
 
@@ -45,16 +47,18 @@ document.body.addEventListener('keyup', function() {
 GameObject = {
   words : {
     //Gonna set up hints
-    "Chicken": "Test",
-    "Spaghetti": "Test2",
-    "Wheels": "Test3",
-    "Brain":"Test4",
-    "Zombies":"Test5",
-    "Vampires":"Test6",
-    "Dungeons":"Test7",
-    "Dragons":"Test8",
-    "Wizards":"Test9",
-    "Knights":"Test10"
+    "Zombie":"Test1",
+    "Vampire":"Test2",
+    "Dungeons":"Test3",
+    "Dragons":"Test4",
+    "Wizard":"Test5",
+    "Knight":"Test6",
+    "Gandalf":"Test7",
+    "Sarumon":"Test8",
+    "Anduril":"Test9",
+    "Ringwraith":"Test10",
+    "Frodo":"Test10"
+
   },
   badCharacters: ['Control', 'Meta', ' ', ';', "Alt", "Shift", "CapsLock", "Enter", "/", "\\", "[", "]", "(", ")", "Backspace", "=", "-", "'", "\""],
   totalGames : 0,
