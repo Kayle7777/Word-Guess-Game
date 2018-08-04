@@ -19,7 +19,7 @@ This is my 3rd week homework!! :)
 
 * ****
 
-## links
+## Links
 
 * **Code repository** - hosted on [Github][github Repo]
 
